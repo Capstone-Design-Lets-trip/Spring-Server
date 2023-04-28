@@ -30,7 +30,7 @@ public class TourSpotDto {
     private String overview;
     private double latitude;
     private double longitude;
-    private String arrive_times;
-    private String depart_times;
-    private int move_times;
+    private String arrive_time;
+    private String depart_time;
+    private int move_time;
 }
