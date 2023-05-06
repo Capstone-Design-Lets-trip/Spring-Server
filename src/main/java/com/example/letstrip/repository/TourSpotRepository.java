@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TourSpotRepository extends JpaRepository<TourSpot, String> {
     TourSpot findByName(String name);
+    TourSpot findById(int id);
 }

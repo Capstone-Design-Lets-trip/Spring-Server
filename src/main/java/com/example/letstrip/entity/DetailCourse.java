@@ -1,15 +1,13 @@
 package com.example.letstrip.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "DETAIL_COURSE")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -26,19 +24,22 @@ public class DetailCourse {
 
     private String spot;
 
-    // == 연관관계 메서드 == //
-    public void setCourse(Course course) {
-        this.course = course;
-    }
+    @Column(columnDefinition = "LONGTEXT")
+    private String arriveTimes;
 
-    public void setSpot(String spot) {
-        this.spot = spot;
-    }
+    @Column(columnDefinition = "LONGTEXT")
+    private String departTimes;
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String moveTimes;
 
     // == 생성 메서드 == //
-    public static DetailCourse createDetailCourse(String spot) {
+    public static DetailCourse createDetailCourse(String spot, String arriveTimes, String departTimes, String moveTimes) {
         DetailCourse detailCourse = new DetailCourse();
         detailCourse.setSpot(spot);
+        detailCourse.setArriveTimes(arriveTimes);
+        detailCourse.setDepartTimes(departTimes);
+        detailCourse.setMoveTimes(moveTimes);
 
         return detailCourse;
     }

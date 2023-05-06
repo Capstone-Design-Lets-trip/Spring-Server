@@ -1,4 +1,4 @@
-package com.example.letstrip.security;
+package com.example.letstrip.service;
 
 import com.example.letstrip.entity.Course;
 import com.example.letstrip.entity.DetailCourse;
@@ -23,13 +23,19 @@ public class CourseService {
     private final TourSpotRepository tourSpotRepository;
 
     @Transactional
-    public Course saveCourse(List<String> names) {
-        StringBuilder sb = new StringBuilder();
-        for (String name : names) {
-            sb.append(tourSpotRepository.findByName(name).getId());
-            sb.append(" ");
+    public Course saveCourse(List<String> names, List<String> arriveTimes, List<String> departTimes, List<Integer> moveTimes) {
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        StringBuilder sb3 = new StringBuilder();
+        StringBuilder sb4 = new StringBuilder();
+        for (int i = 0; i < names.size(); i++) {
+            sb1.append(tourSpotRepository.findByName(names.get(i)).getId() + " ");
+            sb2.append(arriveTimes.get(i) + " ");
+            sb3.append(departTimes.get(i) + " ");
+            sb4.append(moveTimes.get(i) + " ");
         }
-        DetailCourse detailCourse = DetailCourse.createDetailCourse(sb.toString());
+
+        DetailCourse detailCourse = DetailCourse.createDetailCourse(sb1.toString(), sb2.toString(), sb3.toString(), sb4.toString());
 
         Course course = Course.createCourse(detailCourse);
 

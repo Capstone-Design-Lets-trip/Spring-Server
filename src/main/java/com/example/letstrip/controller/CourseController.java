@@ -4,7 +4,7 @@ import com.example.letstrip.dto.CourseDto;
 import com.example.letstrip.dto.ResponseDto;
 import com.example.letstrip.dto.RouteDto;
 import com.example.letstrip.entity.Course;
-import com.example.letstrip.security.CourseService;
+import com.example.letstrip.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +30,8 @@ public class CourseController {
             int span = routeDtoList.size();
             List<Course> courses = new ArrayList<>();
             for (int i = 0; i < span; i++) {
-                Course course = courseService.saveCourse(routeDtoList.get(i).getNames());
+                Course course = courseService.saveCourse(routeDtoList.get(i).getNames(), routeDtoList.get(i).getArrive_times(),
+                        routeDtoList.get(i).getDepart_times(), routeDtoList.get(i).getMove_times());
                 courses.add(course);
             }
 
