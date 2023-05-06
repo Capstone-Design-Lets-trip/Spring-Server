@@ -60,4 +60,7 @@ public class TourSpot {
     private double longitude;
     private int cluster;
     private int avgTime;
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String keywordImgUrl;
 }

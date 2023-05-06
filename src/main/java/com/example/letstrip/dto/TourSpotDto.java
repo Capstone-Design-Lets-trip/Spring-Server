@@ -30,4 +30,5 @@ public class TourSpotDto {
     private String arrive_time;
     private String depart_time;
     private int move_time;
+    private String keywordImgUrl;
 }
