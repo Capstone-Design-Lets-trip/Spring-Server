@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -25,5 +26,9 @@ public class TourSpotService {
         }
 
         return tourSpots;
+    }
+
+    public TourSpot getTourSpotById(Long id) {
+        return tourSpotRepository.findById(id);
     }
 }

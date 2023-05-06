@@ -49,4 +49,9 @@ public class ScrapService {
 
         return scrap;
     }
+
+    public List<Scrap> findAll(String userId) {
+        User user = userRepository.findById(userId).orElseThrow();
+        return scrapRepository.findByUser(user);
+    }
 }
