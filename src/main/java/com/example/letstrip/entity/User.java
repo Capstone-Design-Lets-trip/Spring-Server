@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS")
@@ -36,5 +38,8 @@ public class User {
 
     @Column(nullable = false)
     private Date birth;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Scrap> scrapList = new ArrayList<>();
 
 }
