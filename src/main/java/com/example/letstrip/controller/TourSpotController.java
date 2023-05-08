@@ -48,7 +48,7 @@ public class TourSpotController {
                             .overview(spot.getOverview())
                             .latitude(spot.getLatitude())
                             .longitude(spot.getLongitude())
-                            .arrive_time(routeDtoList.get(i).getArrive_times().get(idx).substring(0, 19))
+                            .arrive_time(routeDtoList.get(i).getArrive_times().get(idx) != null ? routeDtoList.get(i).getArrive_times().get(idx).substring(0, 19) : null)
                             .depart_time(routeDtoList.get(i).getDepart_times().get(idx).substring(0, 19))
                             .move_time(routeDtoList.get(i).getMove_times().get(idx))
                             .keywordImgUrl(spot.getKeywordImgUrl())
