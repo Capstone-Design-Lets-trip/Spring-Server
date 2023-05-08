@@ -33,15 +33,15 @@ public class SurveyController {
                 properties += (p + ",");
             }
             Survey survey = Survey.builder()
-                    .insideOrOutside(surveyDto.getInsideOrOutside())
-                    .mountainOrOcean(surveyDto.getMountainOrOcean())
-                    .activityOrRest(surveyDto.getActivityOrRest())
+                    .inside_outside(surveyDto.getInside_outside())
+                    .mountain_ocean(surveyDto.getMountain_ocean())
+                    .activity_actrraction(surveyDto.getActivity_actrraction())
                     .aquarium(surveyDto.getAquarium())
                     .shopping(surveyDto.getShopping())
                     .startDate(surveyDto.getStartDate())
                     .endDate(surveyDto.getEndDate())
-                    .travelStart(surveyDto.getTravelStart())
-                    .travelEnd(surveyDto.getTravelEnd())
+                    .travel_start(surveyDto.getTravel_start())
+                    .travel_end(surveyDto.getTravel_end())
                     .properties(properties)
                     .build();
 
@@ -50,15 +50,15 @@ public class SurveyController {
 
             SurveyDto responseDto = SurveyDto.builder()
                     .id(savedSurvey.getId())
-                    .insideOrOutside(savedSurvey.getInsideOrOutside())
-                    .mountainOrOcean(savedSurvey.getMountainOrOcean())
-                    .activityOrRest(savedSurvey.getActivityOrRest())
+                    .inside_outside(savedSurvey.getInside_outside())
+                    .mountain_ocean(savedSurvey.getMountain_ocean())
+                    .activity_actrraction(savedSurvey.getActivity_actrraction())
                     .aquarium(savedSurvey.getAquarium())
                     .shopping(savedSurvey.getShopping())
                     .startDate(savedSurvey.getStartDate())
                     .endDate(savedSurvey.getEndDate())
-                    .travelStart(savedSurvey.getTravelStart())
-                    .travelEnd(savedSurvey.getTravelEnd())
+                    .travel_start(savedSurvey.getTravel_start())
+                    .travel_end(savedSurvey.getTravel_end())
                     .properties(propertyList)
                     .build();
 

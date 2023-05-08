@@ -22,15 +22,15 @@ public class Survey {
     @Column(name = "SURVEY_ID")
     private Long id;
 
-    private String insideOrOutside;
-    private String mountainOrOcean;
-    private String activityOrRest;
+    private String inside_outside;
+    private String mountain_ocean;
+    private String activity_actrraction;
     private String aquarium;
     private String shopping;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private LocalTime travelStart;
-    private LocalTime travelEnd;
+    private LocalTime travel_start;
+    private LocalTime travel_end;
 
     @Column(columnDefinition = "LONGTEXT")
     private String properties;

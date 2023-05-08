@@ -17,9 +17,9 @@ import java.util.List;
 public class SurveyDto {
 
     private Long id;
-    private String insideOrOutside;
-    private String mountainOrOcean;
-    private String activityOrRest;
+    private String inside_outside;
+    private String mountain_ocean;
+    private String activity_actrraction;
     private String aquarium;
     private String shopping;
 
@@ -30,10 +30,10 @@ public class SurveyDto {
     private LocalDateTime endDate;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "HH:mm")
-    private LocalTime travelStart;
+    private LocalTime travel_start;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "HH:mm")
-    private LocalTime travelEnd;
+    private LocalTime travel_end;
 
     private List<String> properties;
 }
