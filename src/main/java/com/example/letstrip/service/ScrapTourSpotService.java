@@ -29,6 +29,15 @@ public class ScrapTourSpotService {
     @Transactional
     public ScrapTourSpot save(String userId, ScrapTourSpotDto scrapTourSpotDto) {
         User user = userRepository.findById(userId).orElseThrow();
+        List<ScrapTourSpot> tourSpots = scrapTourSpotRepository.findByUser(user);
+        boolean flag = false;
+        for (int i = 0; i < tourSpots.size(); i++) {
+            if (tourSpots.get(i).getName().equals(scrapTourSpotDto.getName())) {
+                flag = true;
+                break;
+            }
+        }
+        if (flag) throw new RuntimeException("already exist");
         ScrapTourSpot scrapTourSpot = ScrapTourSpot.builder()
                 .name(scrapTourSpotDto.getName())
                 .user(user)
