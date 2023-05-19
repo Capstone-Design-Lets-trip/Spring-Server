@@ -10,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -48,6 +48,35 @@ public class ScrapTourSpotController {
                 throw new RuntimeException("Fail to scrap tour spot");
             }
         } catch(Exception e) {
+            ResponseDto responseDto = ResponseDto.builder().error(e.getMessage()).build();
+            return ResponseEntity.badRequest().body(responseDto);
+        }
+    }
+
+    @GetMapping("/find")
+    public ResponseEntity<?> find(@AuthenticationPrincipal String userId) {
+        try {
+            List<ScrapTourSpot> scrapTourSpotList = scrapTourSpotService.findScrapSpot(userId);
+            List<ScrapTourSpotDto> response = new ArrayList<>();
+            for (ScrapTourSpot spot : scrapTourSpotList) {
+                TourSpot tourSpot = scrapTourSpotService.findTourSpot(spot.getName());
+                ScrapTourSpotDto dto = ScrapTourSpotDto.builder()
+                        .name(tourSpot.getName())
+                        .imgUrl(tourSpot.getImgUrl())
+                        .address(tourSpot.getAddress())
+                        .sun(tourSpot.getSun())
+                        .mon(tourSpot.getMon())
+                        .tue(tourSpot.getTue())
+                        .wed(tourSpot.getWed())
+                        .thu(tourSpot.getThu())
+                        .fri(tourSpot.getFri())
+                        .sat(tourSpot.getSat())
+                        .overview(tourSpot.getOverview())
+                        .build();
+                response.add(dto);
+            }
+            return ResponseEntity.ok().body(response);
+        } catch (Exception e) {
             ResponseDto responseDto = ResponseDto.builder().error(e.getMessage()).build();
             return ResponseEntity.badRequest().body(responseDto);
         }

@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -35,5 +37,14 @@ public class ScrapTourSpotService {
 
     public TourSpot findTourSpot(String name) {
         return tourSpotRepository.findByName(name);
+    }
+
+    public List<ScrapTourSpot> findScrapSpot(String userId) {
+        User user = userRepository.findById(userId).orElseThrow();
+        if (user != null) {
+            return scrapTourSpotRepository.findByUser(user);
+        } else {
+            throw new RuntimeException("Invalid user");
+        }
     }
 }
