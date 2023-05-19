@@ -1,6 +1,7 @@
 package com.example.letstrip.controller;
 
 import com.example.letstrip.dto.ResponseDto;
+import com.example.letstrip.dto.ScrapDto;
 import com.example.letstrip.dto.TourSpotDto;
 import com.example.letstrip.entity.Scrap;
 import com.example.letstrip.entity.TourSpot;
@@ -42,26 +43,58 @@ public class ScrapController {
         try {
             List<Scrap> scrapList = scrapService.findAll(userId);
 
-            List<List<TourSpotDto>> scraped = new ArrayList<>();
+            List<ScrapDto> scraped = new ArrayList<>();
             for (Scrap scrap : scrapList) {
                 String[] scrapIds = scrap.getIdList().split(" ");
                 String[] scrapArriveTimes = scrap.getArriveTimes().split(" ");
                 String[] scrapDepartTimes = scrap.getDepartTimes().split(" ");
                 String[] scrapMoveTimes = scrap.getMoveTimes().split(" ");
                 List<TourSpotDto> dtos = new ArrayList<>();
-                for (int i = 0; i < scrapIds.length; i++) {
-                    TourSpot tourSpot = tourSpotService.getTourSpotById(Long.parseLong(scrapIds[i]));
-                    TourSpotDto dto = TourSpotDto.builder()
-                            .id(tourSpot.getId())
-                            .name(tourSpot.getName())
-                            .imgUrl(tourSpot.getImgUrl())
-                            .arrive_time(scrapArriveTimes[2 * i] + " " + scrapArriveTimes[2 * i + 1])
-                            .depart_time(scrapDepartTimes[2 * i] + " " + scrapDepartTimes[2 * i + 1])
-                            .move_time(Integer.parseInt(scrapMoveTimes[i]))
-                            .build();
-                    dtos.add(dto);
+                TourSpotDto dto;
+                if (scrapArriveTimes.length % 2 == 1) {
+                    for (int i = 0; i < scrapIds.length; i++) {
+                        TourSpot tourSpot = tourSpotService.getTourSpotById(Long.parseLong(scrapIds[i]));
+                        if (i == 0) {
+                            dto = TourSpotDto.builder()
+                                    .id(tourSpot.getId())
+                                    .name(tourSpot.getName())
+                                    .imgUrl(tourSpot.getImgUrl())
+                                    .arrive_time(null)
+                                    .depart_time(scrapDepartTimes[2 * i] + " " + scrapDepartTimes[2 * i + 1])
+                                    .move_time(Integer.parseInt(scrapMoveTimes[i]))
+                                    .build();
+                            dtos.add(dto);
+                        } else {
+                            dto = TourSpotDto.builder()
+                                    .id(tourSpot.getId())
+                                    .name(tourSpot.getName())
+                                    .imgUrl(tourSpot.getImgUrl())
+                                    .arrive_time(scrapArriveTimes[2 * i - 1] + " " + scrapArriveTimes[2 * i])
+                                    .depart_time(scrapDepartTimes[2 * i] + " " + scrapDepartTimes[2 * i + 1])
+                                    .move_time(Integer.parseInt(scrapMoveTimes[i]))
+                                    .build();
+                            dtos.add(dto);
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < scrapIds.length; i++) {
+                        TourSpot tourSpot = tourSpotService.getTourSpotById(Long.parseLong(scrapIds[i]));
+                        dto = TourSpotDto.builder()
+                                .id(tourSpot.getId())
+                                .name(tourSpot.getName())
+                                .imgUrl(tourSpot.getImgUrl())
+                                .arrive_time(scrapArriveTimes[2 * i] + " " + scrapArriveTimes[2 * i + 1])
+                                .depart_time(scrapDepartTimes[2 * i] + " " + scrapDepartTimes[2 * i + 1])
+                                .move_time(Integer.parseInt(scrapMoveTimes[i]))
+                                .build();
+                        dtos.add(dto);
+                    }
                 }
-                scraped.add(dtos);
+                ScrapDto scrapDto = ScrapDto.builder()
+                        .id(scrap.getId())
+                        .tourSpotDtoList(dtos)
+                        .build();
+                scraped.add(scrapDto);
             }
 
             return ResponseEntity.ok().body(scraped);
@@ -70,4 +103,8 @@ public class ScrapController {
             return ResponseEntity.badRequest().body(responseDto);
         }
     }
+
+//    @DeleteMapping("/delete")
+//    public ResponseEntity<?> deleteScrap(@AuthenticationPrincipal String userId,
+                                         //)
 }

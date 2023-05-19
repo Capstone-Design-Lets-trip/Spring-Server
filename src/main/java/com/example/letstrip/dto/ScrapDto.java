@@ -5,14 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ScrapDto {
 
-    private String idList;
-    private String arriveTimes;
-    private String departTimes;
-    private String moveTimes;
+    private Long id;
+    private List<TourSpotDto> tourSpotDtoList = new ArrayList<>();
 }
