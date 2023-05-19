@@ -81,4 +81,20 @@ public class ScrapTourSpotController {
             return ResponseEntity.badRequest().body(responseDto);
         }
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteScrapTourSpot(@AuthenticationPrincipal String userId,
+                                                 @RequestBody ScrapTourSpotDto scrapTourSpotDto) {
+        try {
+            ScrapTourSpot deleted = scrapTourSpotService.deleteScrapTourSpot(userId, scrapTourSpotDto.getName());
+            ScrapTourSpotDto response = ScrapTourSpotDto.builder()
+                    .id(deleted.getId())
+                    .name(deleted.getName())
+                    .build();
+            return ResponseEntity.ok().body(response);
+        } catch (Exception e) {
+            ResponseDto responseDto = ResponseDto.builder().error(e.getMessage()).build();
+            return ResponseEntity.badRequest().body(responseDto);
+        }
+    }
 }

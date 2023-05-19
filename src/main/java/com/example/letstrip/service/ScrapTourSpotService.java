@@ -2,6 +2,7 @@ package com.example.letstrip.service;
 
 import com.example.letstrip.dto.ScrapTourSpotDto;
 import com.example.letstrip.dto.TourSpotDto;
+import com.example.letstrip.entity.Scrap;
 import com.example.letstrip.entity.ScrapTourSpot;
 import com.example.letstrip.entity.TourSpot;
 import com.example.letstrip.entity.User;
@@ -43,6 +44,18 @@ public class ScrapTourSpotService {
         User user = userRepository.findById(userId).orElseThrow();
         if (user != null) {
             return scrapTourSpotRepository.findByUser(user);
+        } else {
+            throw new RuntimeException("Invalid user");
+        }
+    }
+
+    @Transactional
+    public ScrapTourSpot deleteScrapTourSpot(String userId, String name) {
+        User user = userRepository.findById(userId).orElseThrow();
+        if (user != null) {
+            ScrapTourSpot scrapTourSpot = scrapTourSpotRepository.findByName(name);
+            scrapTourSpotRepository.delete(scrapTourSpot);
+            return scrapTourSpot;
         } else {
             throw new RuntimeException("Invalid user");
         }

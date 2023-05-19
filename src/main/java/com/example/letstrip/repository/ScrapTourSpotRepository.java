@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface ScrapTourSpotRepository extends JpaRepository<ScrapTourSpot, Long> {
     List<ScrapTourSpot> findByUser(User user);
+    ScrapTourSpot findByName(String name);
 }
