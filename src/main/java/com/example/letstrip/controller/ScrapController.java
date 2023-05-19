@@ -104,7 +104,15 @@ public class ScrapController {
         }
     }
 
-//    @DeleteMapping("/delete")
-//    public ResponseEntity<?> deleteScrap(@AuthenticationPrincipal String userId,
-                                         //)
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteScrap(@AuthenticationPrincipal String userId,
+                                         @RequestBody ScrapDto scrapDto) {
+        try {
+            scrapService.deleteScrap(userId, scrapDto.getId());
+            return ResponseEntity.ok().body("Delete successfully!");
+        } catch (Exception e) {
+            ResponseDto responseDto = ResponseDto.builder().error(e.getMessage()).build();
+            return ResponseEntity.badRequest().body(responseDto);
+        }
+    }
 }

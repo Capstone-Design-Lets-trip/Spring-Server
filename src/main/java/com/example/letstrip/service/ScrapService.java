@@ -54,4 +54,18 @@ public class ScrapService {
         User user = userRepository.findById(userId).orElseThrow();
         return scrapRepository.findByUser(user);
     }
+
+    @Transactional
+    public void deleteScrap(String userId, Long id) {
+        User user = userRepository.findById(userId).orElseThrow();
+        if (user != null) {
+            if (scrapRepository.findById(id).get().getUser() == user) {
+                scrapRepository.deleteById(id);
+            } else {
+                throw new RuntimeException("Invalid user");
+            }
+        } else {
+            throw new RuntimeException("Invalid user");
+        }
+    }
 }
