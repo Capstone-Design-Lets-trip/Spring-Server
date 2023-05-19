@@ -62,6 +62,8 @@ public class ScrapController {
                                     .arrive_time(null)
                                     .depart_time(scrapDepartTimes[2 * i] + " " + scrapDepartTimes[2 * i + 1])
                                     .move_time(Integer.parseInt(scrapMoveTimes[i]))
+                                    .latitude(tourSpot.getLatitude())
+                                    .longitude(tourSpot.getLongitude())
                                     .build();
                             dtos.add(dto);
                         } else {
@@ -72,6 +74,8 @@ public class ScrapController {
                                     .arrive_time(scrapArriveTimes[2 * i - 1] + " " + scrapArriveTimes[2 * i])
                                     .depart_time(scrapDepartTimes[2 * i] + " " + scrapDepartTimes[2 * i + 1])
                                     .move_time(Integer.parseInt(scrapMoveTimes[i]))
+                                    .latitude(tourSpot.getLatitude())
+                                    .longitude(tourSpot.getLongitude())
                                     .build();
                             dtos.add(dto);
                         }
@@ -86,6 +90,8 @@ public class ScrapController {
                                 .arrive_time(scrapArriveTimes[2 * i] + " " + scrapArriveTimes[2 * i + 1])
                                 .depart_time(scrapDepartTimes[2 * i] + " " + scrapDepartTimes[2 * i + 1])
                                 .move_time(Integer.parseInt(scrapMoveTimes[i]))
+                                .latitude(tourSpot.getLatitude())
+                                .longitude(tourSpot.getLongitude())
                                 .build();
                         dtos.add(dto);
                     }
