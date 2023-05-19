@@ -54,8 +54,12 @@ public class ScrapTourSpotService {
         User user = userRepository.findById(userId).orElseThrow();
         if (user != null) {
             ScrapTourSpot scrapTourSpot = scrapTourSpotRepository.findByName(name);
-            scrapTourSpotRepository.delete(scrapTourSpot);
-            return scrapTourSpot;
+            if (scrapTourSpot.getUser() == user) {
+                scrapTourSpotRepository.delete(scrapTourSpot);
+                return scrapTourSpot;
+            } else {
+                throw new RuntimeException("Invalid user");
+            }
         } else {
             throw new RuntimeException("Invalid user");
         }
