@@ -21,6 +21,7 @@ public class SurveyService {
     @Transactional
     public Survey saveSurvey(String userId, Survey survey) {
         User user = userRepository.findById(userId).orElseThrow();
+        survey.setUser(user);
         if (user != null) {
             return surveyRepository.save(survey);
         } else {

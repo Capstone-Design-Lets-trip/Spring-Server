@@ -35,4 +35,11 @@ public class Survey {
     @Column(columnDefinition = "LONGTEXT")
     private String properties;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
