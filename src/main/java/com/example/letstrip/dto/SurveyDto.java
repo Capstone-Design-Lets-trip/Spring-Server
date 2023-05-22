@@ -23,10 +23,10 @@ public class SurveyDto {
     private String aquarium;
     private String shopping;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private LocalDateTime startDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private LocalDateTime endDate;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "HH:mm")
