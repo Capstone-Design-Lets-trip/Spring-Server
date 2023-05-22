@@ -38,4 +38,5 @@ public class SurveyDto {
     private List<String> properties;
 
     private String email;
+    private String city;
 }

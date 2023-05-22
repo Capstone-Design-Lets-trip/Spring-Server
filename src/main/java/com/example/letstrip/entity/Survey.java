@@ -32,6 +32,7 @@ public class Survey {
     private LocalTime travel_start;
     private LocalTime travel_end;
     private String email;
+    private String city;
 
     @Column(columnDefinition = "LONGTEXT")
     private String properties;
