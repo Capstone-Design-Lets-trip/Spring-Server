@@ -43,6 +43,7 @@ public class SurveyController {
                     .travel_start(surveyDto.getTravel_start())
                     .travel_end(surveyDto.getTravel_end())
                     .properties(properties)
+                    .email(surveyDto.getEmail())
                     .build();
 
             Survey savedSurvey = surveyService.saveSurvey(userId, survey);
@@ -60,6 +61,7 @@ public class SurveyController {
                     .travel_start(savedSurvey.getTravel_start())
                     .travel_end(savedSurvey.getTravel_end())
                     .properties(propertyList)
+                    .email(survey.getEmail())
                     .build();
 
             return ResponseEntity.ok().body(responseDto);

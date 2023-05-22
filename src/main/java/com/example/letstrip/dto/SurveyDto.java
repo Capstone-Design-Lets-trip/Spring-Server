@@ -36,4 +36,6 @@ public class SurveyDto {
     private LocalTime travel_end;
 
     private List<String> properties;
+
+    private String email;
 }
