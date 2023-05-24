@@ -74,9 +74,9 @@ public class SurveyController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getSurvey(@RequestParam("email") String email, @RequestParam("city") String city) {
+    public ResponseEntity<?> getSurvey(@RequestBody SurveyDto surveyDto) {
         try {
-            Survey survey = surveyService.findSurvey(email, city);
+            Survey survey = surveyService.findSurvey(surveyDto.getEmail(), surveyDto.getCity());
 
             List<String> propertyList = new ArrayList<>();
             for (String property : survey.getProperties().split(",")) {
