@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SurveyRepository extends JpaRepository<Survey, Long> {
     Survey findByUserAndCity(User user, String city);
+    Survey findByEmailAndCity(String email, String city);
 }

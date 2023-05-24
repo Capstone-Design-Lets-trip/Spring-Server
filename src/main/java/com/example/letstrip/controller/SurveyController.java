@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -65,6 +67,36 @@ public class SurveyController {
 
             return ResponseEntity.ok().body(responseDto);
 
+        } catch (Exception e) {
+            ResponseDto responseDto = ResponseDto.builder().error(e.getMessage()).build();
+            return ResponseEntity.badRequest().body(responseDto);
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getSurvey(@RequestBody SurveyDto surveyDto) {
+        try {
+            Survey survey = surveyService.findSurvey(surveyDto.getEmail(), surveyDto.getCity());
+
+            List<String> propertyList = new ArrayList<>();
+            for (String property : survey.getProperties().split(",")) {
+                propertyList.add(property.trim());
+            }
+            SurveyDto response = SurveyDto.builder()
+                    .inside_outside(survey.getInside_outside())
+                    .mountain_ocean(survey.getMountain_ocean())
+                    .activity_actrraction(survey.getActivity_actrraction())
+                    .aquarium(survey.getAquarium())
+                    .shopping(survey.getShopping())
+                    .properties(propertyList)
+                    .startDate(survey.getStartDate())
+                    .endDate(survey.getEndDate())
+                    .travel_start(survey.getTravel_start())
+                    .travel_end(survey.getTravel_end())
+                    .city(survey.getCity())
+                    .email(survey.getEmail())
+                    .build();
+            return ResponseEntity.ok().body(response);
         } catch (Exception e) {
             ResponseDto responseDto = ResponseDto.builder().error(e.getMessage()).build();
             return ResponseEntity.badRequest().body(responseDto);
