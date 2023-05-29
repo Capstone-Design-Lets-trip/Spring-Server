@@ -49,6 +49,9 @@ public class TourSpotController {
                         .depart_time(routeDtoList.get(i).getDepart_times().get(idx).substring(0, 19))
                         .move_time(routeDtoList.get(i).getMove_times().get(idx))
                         .keywordImgUrl(spot.getKeywordImgUrl())
+                        .num(spot.getNum())
+                        .rating(spot.getRating())
+                        .type(spot.getType())
                         .build();
                 dayCourse.add(dto);
                 idx++;

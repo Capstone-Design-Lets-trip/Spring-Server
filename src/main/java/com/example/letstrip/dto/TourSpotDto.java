@@ -31,4 +31,7 @@ public class TourSpotDto {
     private String depart_time;
     private int move_time;
     private String keywordImgUrl;
+    private double num;
+    private double rating;
+    private String type;
 }

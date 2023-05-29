@@ -52,10 +52,6 @@ public class TourSpot {
     private String thu;
     private String fri;
     private String sat;
-
-    @ElementCollection
-    private List<String> keyword;
-
     private double latitude;
     private double longitude;
     private int cluster;
