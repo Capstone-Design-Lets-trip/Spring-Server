@@ -50,7 +50,7 @@ public class TourSpotController {
                         .move_time(routeDtoList.get(i).getMove_times().get(idx))
                         .keywordImgUrl(spot.getKeywordImgUrl())
                         .num(spot.getNum())
-                        .rating(spot.getRating())
+                        .star(spot.getStar())
                         .type(spot.getType())
                         .build();
                 dayCourse.add(dto);

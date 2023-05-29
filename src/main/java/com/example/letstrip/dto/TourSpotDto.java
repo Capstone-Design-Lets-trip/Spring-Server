@@ -32,6 +32,6 @@ public class TourSpotDto {
     private int move_time;
     private String keywordImgUrl;
     private double num;
-    private double rating;
+    private double star;
     private String type;
 }
