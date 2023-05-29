@@ -64,6 +64,8 @@ public class ScrapTourSpotController {
                         .name(tourSpot.getName())
                         .imgUrl(tourSpot.getImgUrl())
                         .address(tourSpot.getAddress())
+                        .localAddress(tourSpot.getLocalAddress())
+                        .phoneNumber(tourSpot.getPhoneNumber())
                         .sun(tourSpot.getSun())
                         .mon(tourSpot.getMon())
                         .tue(tourSpot.getTue())
@@ -72,6 +74,12 @@ public class ScrapTourSpotController {
                         .fri(tourSpot.getFri())
                         .sat(tourSpot.getSat())
                         .overview(tourSpot.getOverview())
+                        .latitude(tourSpot.getLatitude())
+                        .longitude(tourSpot.getLongitude())
+                        .keywordImgUrl(tourSpot.getKeywordImgUrl())
+                        .num(tourSpot.getNum())
+                        .star(tourSpot.getStar())
+                        .type(tourSpot.getType())
                         .build();
                 response.add(dto);
             }
